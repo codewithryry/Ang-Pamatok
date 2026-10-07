@@ -177,14 +177,73 @@
     line-height: 1.45;
   }
 
-  .account-menu__panel {
-    right: -48px;
+  /* Keep only the account and theme controls in the mobile header. */
+  .account-menu {
+    display: block;
+  }
+
+  .masthead {
+    height: 70px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 1fr;
+    gap: 8px;
+    padding-block: 8px;
+  }
+
+  .header-search {
+    display: none;
+  }
+
+  .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .menu-button,
+  .site-header .theme-toggle {
+    display: grid;
+  }
+
+  .menu-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mobile-search {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 15px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--muted);
+    text-align: left;
+  }
+
+  .mobile-search span {
+    font-size: .86rem;
+  }
+
+  .mobile-menu {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-menu > * {
+    flex-shrink: 0;
   }
 }
 
 @media (max-width: 380px) {
   .masthead {
-    grid-template-columns: minmax(0, 1fr) 36px auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 6px;
   }
 
@@ -202,15 +261,13 @@
   }
 
   .header-actions {
-    gap: 6px;
+    gap: 2px;
   }
 
-  .header-search {
+  .menu-button,
+  .site-header .theme-toggle,
+  .account-menu__trigger {
     width: 36px;
-    min-height: 36px;
-  }
-
-  .account-menu__panel {
-    right: -92px;
+    height: 36px;
   }
 }

@@ -32,6 +32,46 @@ describe('ANG PAMATOK application', () => {
     expect(document.querySelector('.site-footer')).toBeInTheDocument()
   })
 
+  it('keeps the profile, theme, and menu controls in the mobile header', () => {
+    window.history.replaceState({}, '', '/')
+    render(<App />)
+
+    const mobileHeader = document.querySelector('.masthead')
+
+    expect(within(mobileHeader).getByRole('button', { name: 'Account options' })).toBeInTheDocument()
+    expect(within(mobileHeader).getByRole('button', { name: 'Gawing madilim ang anyo' })).toBeInTheDocument()
+    expect(within(mobileHeader).getByRole('button', { name: 'Buksan ang talaan' })).toBeInTheDocument()
+  })
+  it('shows Back to home on login and signup pages', () => {
+    window.history.replaceState({}, '', '/login')
+    render(<App />)
+    expect(screen.getByRole('link', { name: 'Back to home' })).toHaveAttribute('href', '/')
+
+    window.history.replaceState({}, '', '/register')
+    cleanup()
+    render(<App />)
+    expect(screen.getByRole('link', { name: 'Back to home' })).toHaveAttribute('href', '/')
+  })
+  it('shows the search action inside the mobile menu', () => {
+    window.history.replaceState({}, '', '/')
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Buksan ang talaan' }))
+    const mobileMenu = document.querySelector('.mobile-menu')
+
+    expect(within(mobileMenu).getByRole('button', { name: 'Maghanap ng mga akda...' })).toBeInTheDocument()
+  })
+
+  it('does not show the subscribe action in the mobile menu', () => {
+    window.history.replaceState({}, '', '/')
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Buksan ang talaan' }))
+    const mobileMenu = document.querySelector('.mobile-menu')
+
+    expect(within(mobileMenu).queryByRole('button', { name: 'SUBSCRIBE' })).not.toBeInTheDocument()
+  })
+
   it('opens and closes the account options menu', () => {
     window.history.replaceState({}, '', '/')
     render(<App />)

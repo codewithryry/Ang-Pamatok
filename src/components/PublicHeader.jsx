@@ -75,7 +75,7 @@ export const PublicHeader = () => {
       <div className={`mobile-menu ${open ? 'is-open' : ''}`} aria-hidden={!open}>
         <div className="mobile-menu__top"><Brand compact /><button className="icon-button" onClick={() => setOpen(false)} aria-label="Isara ang talaan"><X /></button></div>
         <nav aria-label="Talaan sa telepono">{navItems.map(([label, path]) => <NavLink key={path} to={path} end={path === '/'} onClick={() => setOpen(false)}>{label}</NavLink>)}</nav>
-        <div className="mobile-menu__footer"><button type="button" className="subscribe-button subscribe-button--mobile" onClick={showSubscribeNotice}><span>SUBSCRIBE</span><ArrowRight size={16} /></button>{subscribeNoticeOpen && <div className="mobile-subscribe-notice" role="status">Subscriptions are still under development. Check back soon!</div>}<button type="button" className="button button--outline" onClick={openSearch}><Search size={17} /> Hanapin sa sinupan</button><Link className="button button--primary" to="/login" onClick={() => setOpen(false)}>Log in sa patnugutan</Link></div>
+        <div className="mobile-menu__footer"><button type="button" className="mobile-search" onClick={openSearch}><Search size={18} /><span>Maghanap ng mga akda...</span></button><Link className="button button--primary" to="/login" onClick={() => setOpen(false)}>Log in sa patnugutan</Link><Link className="button button--outline" to="/register" onClick={() => setOpen(false)}><UserRoundPlus size={17} /> Sign up</Link></div>
       </div>
       <div className={`menu-backdrop ${open ? 'is-visible' : ''}`} onClick={() => setOpen(false)} aria-hidden="true" />
       <SearchOverlay open={searchOpen} onClose={closeSearch} />
