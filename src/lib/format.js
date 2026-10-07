@@ -1,8 +1,14 @@
 export const formatDate = (value) => {
-  if (!value) return 'Date unavailable'
+  if (!value) return 'Walang petsa'
   const date = new Date(value)
-  if (Number.isNaN(date.getTime())) return 'Date unavailable'
-  return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(date)
+  if (Number.isNaN(date.getTime())) return 'Walang petsa'
+  return new Intl.DateTimeFormat('fil-PH', { day: 'numeric', month: 'long', year: 'numeric' }).format(date)
+}
+
+export const publicCategoryName = (category) => {
+  if (!category) return 'Akda'
+  if (category.slug === 'investigative' || category.name === 'Investigative') return 'Pagsisiyasat'
+  return category.name || 'Akda'
 }
 
 export const slugify = (value) => value.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')

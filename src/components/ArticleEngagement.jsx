@@ -62,28 +62,28 @@ export const ArticleEngagement = ({ articleId }) => {
   }
 
   const remove = async (id) => {
-    if (!await confirm({ title: 'Delete this comment?', message: 'It will be removed from the article permanently.', confirmLabel: 'Delete' })) return
+    if (!await confirm({ title: 'Burahin ang tugong ito?', message: 'Tuluyan itong aalisin sa akda.', confirmLabel: 'Burahin' })) return
     const result = await deleteComment(id)
     if (result.error) { setError(result.error); return }
     setComments(comments.filter((comment) => comment.id !== id))
-    toast('Comment deleted.')
+    toast('Binura ang tugon.')
   }
 
   return <div className="engagement">
     <section className="engagement-card reactions">
-      <h2>How did this piece make you feel?</h2>
+      <h2>Ano ang nadama mo sa akdang ito?</h2>
       <div className="reactions__list">{reactionTypes.map(([type, emoji, label]) => <button type="button" key={type} className={`reaction ${mine === type ? 'is-active' : ''}`} onClick={() => react(type)} aria-pressed={mine === type} aria-label={`${label} (${counts[type] || 0})`} title={label}><span aria-hidden="true">{emoji}</span><strong>{counts[type] || 0}</strong></button>)}</div>
     </section>
     <section className="engagement-card discussions">
-      <div className="discussions__heading"><h2>Discussions</h2><span className="discussions__count">{comments.length}</span></div>
-      {COMMENTS_OPEN && <p className="discussions__intro">Join the conversation and share your perspective on this piece.</p>}
+      <div className="discussions__heading"><h2>Mga Tugon</h2><span className="discussions__count">{comments.length}</span></div>
+      {COMMENTS_OPEN && <p className="discussions__intro">Makibahagi sa usapan at ibahagi ang iyong pananaw tungkol sa akdang ito.</p>}
       {COMMENTS_OPEN ? <form className="discussions__form" onSubmit={post}>
         {error && <div className="form-error" role="alert">{error}</div>}
-        <input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Your name" required maxLength="60" aria-label="Your name" />
-        <textarea value={form.body} onChange={(event) => setForm({ ...form, body: event.target.value })} placeholder="Write a respectful comment…" required maxLength="1000" rows="4" aria-label="Comment" />
-        <div className="discussions__actions"><span>{form.body.length}/1000</span><button className="button button--primary" disabled={posting}><Send size={16} /> {posting ? 'Posting…' : 'Post comment'}</button></div>
-      </form> : <div className="discussions__locked"><Lock size={18} /><span>Discussions are closed for now.</span></div>}
-      {comments.length ? <ul className="discussions__list">{comments.map((comment) => <li key={comment.id}><span className="discussions__avatar">{comment.name.trim()[0]?.toUpperCase()}</span><div><div className="discussions__meta"><strong>{comment.name}</strong><span>{formatDate(comment.created_at)}</span>{canModerate && <button type="button" onClick={() => remove(comment.id)} aria-label="Delete comment"><Trash2 size={14} /></button>}</div><p>{comment.body}</p></div></li>)}</ul> : <div className="discussions__empty"><MessageSquare size={22} /><span>{COMMENTS_OPEN ? 'No conversations yet. Be the first to start the discussion!' : 'No comments on this piece.'}</span></div>}
+        <input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="Pangalan mo" required maxLength="60" aria-label="Pangalan mo" />
+        <textarea value={form.body} onChange={(event) => setForm({ ...form, body: event.target.value })} placeholder="Sumagot nang may paggalang…" required maxLength="1000" rows="4" aria-label="Tugon" />
+        <div className="discussions__actions"><span>{form.body.length}/1000</span><button className="button button--primary" disabled={posting}><Send size={16} /> {posting ? 'Ipinadadala…' : 'Ipadala ang tugon'}</button></div>
+      </form> : <div className="discussions__locked"><Lock size={18} /><span>Pansamantalang nakasara ang mga tugon.</span></div>}
+      {comments.length ? <ul className="discussions__list">{comments.map((comment) => <li key={comment.id}><span className="discussions__avatar">{comment.name.trim()[0]?.toUpperCase()}</span><div><div className="discussions__meta"><strong>{comment.name}</strong><span>{formatDate(comment.created_at)}</span>{canModerate && <button type="button" onClick={() => remove(comment.id)} aria-label="Burahin ang tugon"><Trash2 size={14} /></button>}</div><p>{comment.body}</p></div></li>)}</ul> : <div className="discussions__empty"><MessageSquare size={22} /><span>{COMMENTS_OPEN ? 'Wala pang usapan. Ikaw ang maunang sumagot!' : 'Wala pang tugon sa akdang ito.'}</span></div>}
     </section>
   </div>
 }

@@ -9,5 +9,5 @@ export const BackToTop = () => {
     window.addEventListener('scroll', update, { passive: true })
     return () => window.removeEventListener('scroll', update)
   }, [])
-  return <button type="button" className={`back-to-top ${visible ? 'is-visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top" title="Back to top" tabIndex={visible ? 0 : -1}><ArrowUp size={18} /></button>
+  return <button type="button" className={`back-to-top ${visible ? 'is-visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Bumalik sa itaas" title="Bumalik sa itaas" tabIndex={visible ? 0 : -1}><ArrowUp size={18} /></button>
 }

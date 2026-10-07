@@ -30,18 +30,18 @@ export const SearchPage = () => {
   return (
     <main className="container page-shell search-page">
       <header className="search-header">
-        <span className="eyebrow">The archive</span>
-        <h1>Search stories</h1>
-        <p>Find reporting, perspectives, and literary work from the ANG PAMATOK collection.</p>
+        <span className="eyebrow">Ang sinupan</span>
+        <h1>Hanapin ang mga akda</h1>
+        <p>Hanapin ang mga ulat, pananaw, at akdang pampanitikan sa kalipunan ng ANG PAMATOK.</p>
       </header>
       <form className="search-box" role="search" onSubmit={(event) => {
         event.preventDefault()
         setParams({ q: event.currentTarget.elements.query.value.trim() })
       }}>
         <Search size={21} />
-        <label className="sr-only" htmlFor="archive-search">Search articles</label>
-        <input id="archive-search" name="query" defaultValue={query} placeholder="Search by title, topic, author…" autoComplete="off" />
-        <button className="button button--primary" type="submit">Search</button>
+        <label className="sr-only" htmlFor="archive-search">Maghanap ng mga akda</label>
+        <input id="archive-search" name="query" defaultValue={query} placeholder="Pamagat, paksa, o may-akda…" autoComplete="off" />
+        <button className="button button--primary" type="submit">Hanapin</button>
       </form>
       {loading ? (
         <LoadingState count={6} />
@@ -50,14 +50,14 @@ export const SearchPage = () => {
       ) : (
         <section>
           <div className="results-count">
-            {query ? `${articles.length} ${articles.length === 1 ? 'result' : 'results'} for “${query}”` : `${articles.length} latest stories`}
+            {query ? `${articles.length} ${articles.length === 1 ? 'akda ang tumugma' : 'akda ang tumugma'} sa “${query}”` : `${articles.length} pinakabagong akda`}
           </div>
           {articles.length > 0 ? (
             <ArticleGrid articles={articles} columns={3} />
           ) : (
             <EmptyState
-              title={query ? 'No stories found' : 'The archive is empty'}
-              description={query ? 'Try a broader search term.' : 'Published stories will appear here.'}
+              title={query ? 'Walang nakitang akda' : 'Walang laman ang sinupan'}
+              description={query ? 'Subukan ang mas malawak na salita sa paghahanap.' : 'Dito lilitaw ang mga nailathalang akda.'}
             />
           )}
         </section>

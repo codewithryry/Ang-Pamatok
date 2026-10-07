@@ -10,5 +10,5 @@ export const ThemeToggle = () => {
     try { localStorage.setItem('pamatok-theme', next) } catch { /* storage unavailable */ }
     setTheme(next)
   }
-  return <button type="button" className="theme-toggle" onClick={toggle} aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} title={theme === 'dark' ? 'Light mode' : 'Dark mode'}>{theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}</button>
+  return <button type="button" className="theme-toggle" onClick={toggle} aria-label={theme === 'dark' ? 'Gawing maliwanag ang anyo' : 'Gawing madilim ang anyo'} title={theme === 'dark' ? 'Maliwanag na anyo' : 'Madilim na anyo'}>{theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}</button>
 }

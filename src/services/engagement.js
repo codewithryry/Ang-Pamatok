@@ -1,6 +1,6 @@
 import { supabase, isSupabaseConfigured, apiError } from '../lib/supabase'
 
-export const reactionTypes = [['like', '👍', 'Like'], ['love', '❤️', 'Love'], ['wow', '😮', 'Wow'], ['sad', '😢', 'Sad'], ['angry', '😠', 'Angry']]
+export const reactionTypes = [['like', '👍', 'Gusto'], ['love', '❤️', 'Pagmamahal'], ['wow', '😮', 'Gulat'], ['sad', '😢', 'Lungkot'], ['angry', '😠', 'Galit']]
 
 export const getReactions = async (articleId) => {
   if (!isSupabaseConfigured || !supabase) return { data: {}, error: null }
@@ -22,7 +22,7 @@ export const getComments = async (articleId) => {
 }
 
 export const addComment = async (articleId, { name, body }) => {
-  if (!isSupabaseConfigured || !supabase) return { data: null, error: 'Comments are not available right now.' }
+  if (!isSupabaseConfigured || !supabase) return { data: null, error: 'Hindi muna magagamit ang mga tugon.' }
   const { data, error } = await supabase.from('article_comments').insert({ article_id: articleId, name: name.trim(), body: body.trim() }).select('id, name, body, created_at').single()
   return { data: data || null, error: error ? apiError(error) : null }
 }

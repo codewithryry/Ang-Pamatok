@@ -41,20 +41,20 @@ export const ReadingRail = ({ article, views, fontSize, onFontSize, contentRef }
   }
   const nativeShare = () => navigator.share?.({ title: article.title, text: article.excerpt, url }).catch(() => {})
 
-  return <aside className="reading-rail" aria-label="Reading tools">
-    <div className="reading-rail__group" title={`${views} views`}><Eye size={17} /><span className="reading-rail__count">{compact(views)}</span></div>
-    <div className="reading-rail__group reading-rail__group--progress" title={`${Math.round(progress * 100)}% read`}>
+  return <aside className="reading-rail" aria-label="Mga kasangkapan sa pagbasa">
+    <div className="reading-rail__group" title={`${views} beses binasa`}><Eye size={17} /><span className="reading-rail__count">{compact(views)}</span></div>
+    <div className="reading-rail__group reading-rail__group--progress" title={`${Math.round(progress * 100)}% nabasa`}>
       <svg className="reading-rail__ring" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" className="reading-rail__track" /><circle cx="20" cy="20" r="17" className="reading-rail__progress" strokeDasharray={RING} strokeDashoffset={RING * (1 - progress)} /></svg>
       <span className="reading-rail__count">{Math.round(progress * 100)}%</span>
     </div>
     <div className="reading-rail__group reading-rail__sizes"><span className="reading-rail__label">Aa</span>{sizes.map(([size, label]) => <button type="button" key={size} className={`reading-rail__size reading-rail__size--${size} ${fontSize === size ? 'is-active' : ''}`} onClick={() => onFontSize(size)} aria-label={label} aria-pressed={fontSize === size}>A</button>)}</div>
     <div className="reading-rail__group">
-      <button type="button" className="reading-rail__icon" onClick={copyLink} aria-label="Copy link" title={copied ? 'Link copied' : 'Copy link'}>{copied ? <Check size={16} /> : <Link2 size={16} />}</button>
-      <a className="reading-rail__icon" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Share on Facebook"><FacebookIcon /></a>
-      <a className="reading-rail__icon" href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(article.title)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on X" title="Share on X"><XIcon /></a>
-      {typeof navigator !== 'undefined' && navigator.share && <button type="button" className="reading-rail__icon" onClick={nativeShare} aria-label="More sharing options" title="Share"><Share2 size={16} /></button>}
+      <button type="button" className="reading-rail__icon" onClick={copyLink} aria-label="Kopyahin ang kawing" title={copied ? 'Nakopya na ang kawing' : 'Kopyahin ang kawing'}>{copied ? <Check size={16} /> : <Link2 size={16} />}</button>
+      <a className="reading-rail__icon" href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer" aria-label="Ibahagi sa Facebook" title="Ibahagi sa Facebook"><FacebookIcon /></a>
+      <a className="reading-rail__icon" href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(article.title)}`} target="_blank" rel="noopener noreferrer" aria-label="Ibahagi sa X" title="Ibahagi sa X"><XIcon /></a>
+      {typeof navigator !== 'undefined' && navigator.share && <button type="button" className="reading-rail__icon" onClick={nativeShare} aria-label="Iba pang paraan ng pagbabahagi" title="Ibahagi"><Share2 size={16} /></button>}
     </div>
-    {copied && <span className="reading-rail__toast" role="status">Link copied</span>}
-    <div className={`now-reading ${reading ? 'is-visible' : ''}`} aria-hidden="true"><span className="reading-progress-bar" style={{ transform: `scaleX(${progress})` }} /><div className="now-reading__inner container"><span className="now-reading__label">Now reading:</span><span className="now-reading__title">{article.title}</span></div></div>
+    {copied && <span className="reading-rail__toast" role="status">Nakopya na ang kawing</span>}
+    <div className={`now-reading ${reading ? 'is-visible' : ''}`} aria-hidden="true"><span className="reading-progress-bar" style={{ transform: `scaleX(${progress})` }} /><div className="now-reading__inner container"><span className="now-reading__label">Kasalukuyang binabasa:</span><span className="now-reading__title">{article.title}</span></div></div>
   </aside>
 }

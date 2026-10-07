@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
+import '@testing-library/jest-dom/vitest'
 import { afterEach, describe, expect, it } from 'vitest'
 import App from './App'
 
 afterEach(() => {
+  cleanup()
   window.history.replaceState({}, '', '/')
 })
 
@@ -11,14 +13,43 @@ describe('ANG PAMATOK application', () => {
     window.history.replaceState({}, '', '/')
     render(<App />)
 
-    expect(screen.getByRole('link', { name: /ANG PAMATOK/i })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /Stories from the campus/i })).toBeInTheDocument()
+    expect(screen.getAllByRole('link', { name: 'ANG PAMATOK, tahanan' })).toHaveLength(2)
+    expect(screen.getByRole('heading', { name: /Mga akda mula sa kampus/i })).toBeInTheDocument()
   })
 
-  it('renders the category page for a public route', () => {
-    window.history.replaceState({}, '', '/news')
+  it('opens public category routes with the site header and footer', () => {
+    window.history.replaceState({}, '', '/balita')
     render(<App />)
 
-    expect(screen.getByRole('heading', { name: 'News' })).toBeInTheDocument()
+    expect(document.querySelector('.site-header')).toBeInTheDocument()
+    expect(document.querySelector('.site-footer')).toBeInTheDocument()
+  })
+
+  it('opens the about page', () => {
+    window.history.replaceState({}, '', '/about')
+    render(<App />)
+
+    expect(document.querySelector('.site-footer')).toBeInTheDocument()
+  })
+
+  it('opens and closes the account options menu', () => {
+    window.history.replaceState({}, '', '/')
+    render(<App />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Account options' }))
+    const accountPanel = within(screen.getByText('Welcome to Ang Pamatok').closest('.account-menu__panel'))
+    expect(accountPanel.getByText('Access your account')).toBeInTheDocument()
+    expect(accountPanel.getByText('Create a new account')).toBeInTheDocument()
+
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(screen.queryByText('Welcome to Ang Pamatok')).not.toBeInTheDocument()
+  })
+
+  it('keeps account links out of the footer', () => {
+    window.history.replaceState({}, '', '/')
+    render(<App />)
+
+    const footer = within(screen.getByRole('contentinfo'))
+    expect(footer.queryByRole('link', { name: /Log in|Sign up/ })).not.toBeInTheDocument()
   })
 })

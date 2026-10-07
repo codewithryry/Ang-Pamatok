@@ -39,7 +39,7 @@ export const ListenPlayer = ({ title, html }) => {
     if (index >= chunks.length) { setState('done'); setProgress(1); return }
     indexRef.current = index
     const utterance = new SpeechSynthesisUtterance(chunks[index])
-    utterance.lang = document.documentElement.lang || 'en'
+    utterance.lang = document.documentElement.lang || 'fil-PH'
     utterance.onboundary = (event) => setProgress(Math.min(1, (offsets[index] + event.charIndex) / text.length))
     utterance.onend = () => { if (indexRef.current === index) speakFrom(index + 1) }
     window.speechSynthesis.speak(utterance)
@@ -64,13 +64,13 @@ export const ListenPlayer = ({ title, html }) => {
   }
 
   return <div className={`listen-player ${state === 'playing' ? 'is-playing' : ''}`}>
-    <button type="button" className="listen-player__toggle" onClick={toggle} aria-label={state === 'playing' ? 'Pause narration' : 'Listen to article'}>{state === 'playing' ? <Pause size={18} /> : <Play size={18} />}</button>
+    <button type="button" className="listen-player__toggle" onClick={toggle} aria-label={state === 'playing' ? 'Ihinto ang pagbasa' : 'Pakinggan ang akda'}>{state === 'playing' ? <Pause size={18} /> : <Play size={18} />}</button>
     <div className="listen-player__info">
-      <span className="listen-player__label">Listen to article</span>
-      <span className="listen-player__meta">Synthesized narration · {formatTime(progress * totalSeconds)} / {formatTime(totalSeconds)}</span>
+      <span className="listen-player__label">Pakinggan ang akda</span>
+      <span className="listen-player__meta">Pagbigkas ng aparato · {formatTime(progress * totalSeconds)} / {formatTime(totalSeconds)}</span>
       <span className="listen-player__track"><span style={{ transform: `scaleX(${progress})` }} /></span>
     </div>
     <span className="listen-player__bars" aria-hidden="true"><i /><i /><i /><i /></span>
-    {state !== 'idle' && <button type="button" className="listen-player__restart" onClick={restart} aria-label="Restart narration" title="Restart"><RotateCcw size={15} /></button>}
+    {state !== 'idle' && <button type="button" className="listen-player__restart" onClick={restart} aria-label="Ulitin ang pagbasa" title="Ulitin"><RotateCcw size={15} /></button>}
   </div>
 }

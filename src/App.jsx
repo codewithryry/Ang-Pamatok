@@ -28,14 +28,14 @@ const PublicShell = ({ children }) => <><PublicHeader />{children}<PublicFooter 
 const DashboardShell = ({ children }) => <DashboardLayout>{children}</DashboardLayout>
 
 const pageTitles = {
-  '/': 'Home',
-  '/about': 'About',
-  '/declaration': 'Declaration',
-  '/search': 'Search',
-  '/login': 'Sign in',
+  '/': 'Tahanan',
+  '/about': 'Tungkol sa Amin',
+  '/declaration': 'Pahayag',
+  '/search': 'Hanapin',
+  '/login': 'Login',
   '/register': 'Register',
-  '/forgot-password': 'Reset password',
-  '/change-password': 'Change password',
+  '/forgot-password': 'Reset Password',
+  '/change-password': 'Change Password',
   '/dashboard': 'Dashboard',
   '/dashboard/articles': 'Articles',
   '/dashboard/articles/new': 'Create Article',
@@ -45,15 +45,15 @@ const pageTitles = {
   '/dashboard/settings': 'Settings',
   '/dashboard/profile': 'My Profile',
 }
-const categoryTitles = { 'balita': 'Balita', 'ag-tek': 'Ag-Tek', 'opinyon': 'Opinyon', 'editoryal': 'Editoryal', 'lathalain': 'Lathalain', 'panitikan': 'Panitikan', 'kultura': 'Kultura', 'investigative': 'Investigative' }
+const categoryTitles = { 'balita': 'Balita', 'ag-tek': 'Agham at Teknolohiya', 'opinyon': 'Pananaw', 'editoryal': 'Paninindigan', 'lathalain': 'Lathalain', 'panitikan': 'Panitikan', 'kultura': 'Kultura', 'investigative': 'Pagsisiyasat' }
 
 // Sets the browser tab title per route and resets scroll; ArticlePage refines it with the story title once loaded.
 const RouteTitle = () => {
   const { pathname } = useLocation()
   useEffect(() => {
     const slug = pathname.slice(1)
-    const title = pageTitles[pathname] || (pathname.endsWith('/edit') ? 'Edit Article' : pathname.startsWith('/article/') ? 'Story' : categoryTitles[slug])
-    document.title = pathname === '/' ? 'Ang Pamatok | Student Publication' : title ? `${title} | Ang Pamatok` : 'Ang Pamatok'
+    const title = pageTitles[pathname] || (pathname.endsWith('/edit') ? 'Edit Article' : pathname.startsWith('/article/') ? 'Akda' : categoryTitles[slug])
+    document.title = pathname === '/' ? 'Ang Pamatok | Pahayagang Pangmag-aaral' : title ? `${title} | Ang Pamatok` : 'Ang Pamatok'
     // New pages start at the top instead of keeping the previous scroll position.
     window.scrollTo(0, 0)
   }, [pathname])

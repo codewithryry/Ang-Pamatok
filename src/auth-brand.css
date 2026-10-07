@@ -1,0 +1,38 @@
+.auth-brand {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: radial-gradient(120% 140% at 12% 10%, #b5293b 0, #8a1a27 38%, #3b0e15 78%, #1c0a0d 100%);
+}
+
+.auth-brand > :not(.auth-brand__watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+.auth-brand .brand__logo {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.auth-brand .brand__kicker {
+  color: var(--gold);
+  font-size: .75rem;
+  font-weight: 900;
+  letter-spacing: .24em;
+}
+
+.auth-brand .brand__name {
+  font-weight: 900;
+}
+
+.auth-brand__watermark {
+  position: absolute;
+  z-index: 0;
+  right: -60px;
+  bottom: -90px;
+  width: min(420px, 65%);
+  opacity: .07;
+  pointer-events: none;
+}
