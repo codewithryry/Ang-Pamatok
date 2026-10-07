@@ -31,5 +31,3 @@ ANG PAMATOK aims to make important stories accessible, connect students with sha
 ## Our community
 
 We welcome reporting, student perspectives, literary work, and ideas for the future of the publication. Every contribution goes through a clear editorial process before it is published.
-
-<p align="center"><strong>Read. Write. Participate.</strong></p>
