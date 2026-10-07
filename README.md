@@ -19,19 +19,17 @@ ANG PAMATOK aims to make important stories accessible, connect students with sha
 
 ## Sections
 
-- **News**: campus developments, community updates, and the stories shaping student life.
-- **Sci-Tech**: science, technology, and innovation on campus and beyond.
-- **Opinion**: clear perspectives on education, culture, and campus life.
-- **Editorial**: the official stand of the editorial board on issues that matter.
-- **Feature**: in-depth profiles and first-person reporting from the student community.
-- **Literary**: poetry, prose, and reflections from writers in our community.
+- **Balita**: campus developments, community updates, and the stories shaping student life.
+- **Ag-Tek**: science, technology, and innovation on campus and beyond.
+- **Opinyon**: clear perspectives on education, culture, and campus life.
+- **Editoryal**: the official stand of the editorial board on issues that matter.
+- **Lathalain**: in-depth profiles and first-person reporting from the student community.
+- **Panitikan**: poetry, prose, and reflections from writers in our community.
+- **Kultura**: art, tradition, and the ways of life that shape our identity.
+- **Investigative**: in-depth reporting that digs beneath the issues.
 
 ## Our community
 
 We welcome reporting, student perspectives, literary work, and ideas for the future of the publication. Every contribution goes through a clear editorial process before it is published.
 
 <p align="center"><strong>Read. Write. Participate.</strong></p>
-
----
-
-<p align="center"><sub>Developed by <a href="https://bit.ly/4cqo0aA">bit.ly/4cqo0aA</a></sub></p>

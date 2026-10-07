@@ -40,3 +40,16 @@ export const createUser = async ({ fullName, email, password, role }) => {
   const result = await supabase.from('profiles').update({ role, is_active: true, must_change_password: true }).eq('id', data.user.id).select('id').single()
   return { data: result.data || null, error: result.error ? apiError(result.error) : null }
 }
+
+export const updateOwnProfile = async (id, { full_name, display_name, bio }) => {
+  if (!isSupabaseConfigured || !supabase) return { data: null, error: null }
+  const { data, error } = await supabase.from('profiles').update({ full_name, display_name, bio }).eq('id', id).select('id').single()
+  return { data: data || null, error: error ? apiError(error) : null }
+}
+
+// Runs public.admin_delete_user, which removes the auth account and its profile.
+export const deleteUser = async (id) => {
+  if (!isSupabaseConfigured || !supabase) return { error: null }
+  const { error } = await supabase.rpc('admin_delete_user', { target: id })
+  return { error: error ? apiError(error) : null }
+}

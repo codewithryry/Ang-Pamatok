@@ -5,7 +5,12 @@
     <link rel="icon" type="image/png" sizes="250x250" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ANG PAMATOK</title>
+    <title>Ang Pamatok | Student Publication</title>
+    <script>
+      // Apply the saved theme (dark by default) before the app renders to avoid a light flash.
+      document.documentElement.dataset.theme = 'dark'
+      try { document.documentElement.dataset.theme = localStorage.getItem('pamatok-theme') || 'dark' } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

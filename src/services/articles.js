@@ -17,7 +17,8 @@ export const getPublishedArticles = async ({ category, page = 1, search, limit =
   }
   let query = supabase.from('articles').select(articleSelect).eq('status', 'published').not('published_at', 'is', null).order('published_at', { ascending: false })
   if (category) query = query.eq('category_id', category)
-  if (search) query = query.or(`title.ilike.%${search}%,excerpt.ilike.%${search}%,category.name.ilike.%${search}%,author.full_name.ilike.%${search}%`)
+  // PostgREST can't mix embedded-table filters into or(), so search the article's own text.
+  if (search) { const term = search.replace(/[,()%*]/g, ' ').trim(); query = query.or(`title.ilike.%${term}%,excerpt.ilike.%${term}%,content.ilike.%${term}%`) }
   const { data, count, error } = await query.range((page - 1) * limit, page * limit - 1)
   return { data: data || [], count: count || 0, error: error ? apiError(error) : null }
 }
@@ -36,7 +37,7 @@ export const getArticleById = async (id) => {
 
 export const getFeaturedArticle = async () => {
   if (!isSupabaseConfigured || !supabase) return { data: publishedDemo().find((article) => article.is_featured) || null, error: null }
-  const { data, error } = await supabase.from('articles').select(articleSelect).eq('status', 'published').eq('is_featured', true).not('published_at', 'is', null).order('published_at', { ascending: false }).limit(1).single()
+  const { data, error } = await supabase.from('articles').select(articleSelect).eq('status', 'published').eq('is_featured', true).not('published_at', 'is', null).order('published_at', { ascending: false }).limit(1).maybeSingle()
   return { data: data || null, error: error ? apiError(error) : null }
 }
 
@@ -81,4 +82,23 @@ export const changeArticleStatus = async (id, status, reason = '') => {
   if (!isSupabaseConfigured || !supabase) return { data: { id, status }, error: null }
   const { data, error } = await supabase.from('articles').update({ status, published_at: status === 'published' ? new Date().toISOString() : null, rejection_reason: status === 'rejected' ? reason : null }).eq('id', id).select().single()
   return { data: data || null, error: error ? apiError(error) : null }
+}
+
+// Counts one read per browser session; returns the new total, or null if counting is unavailable.
+export const recordArticleView = async (id) => {
+  if (!isSupabaseConfigured || !supabase) return null
+  const key = `pamatok-viewed-${id}`
+  try { if (sessionStorage.getItem(key)) return null } catch { /* storage unavailable */ }
+  const { data, error } = await supabase.rpc('increment_article_view', { article_id: id })
+  if (error) return null
+  try { sessionStorage.setItem(key, '1') } catch { /* storage unavailable */ }
+  return typeof data === 'number' ? data : null
+}
+
+// Deletes an article (admins only via RLS); revisions, reactions and comments cascade.
+export const deleteArticle = async (id) => {
+  if (!isSupabaseConfigured || !supabase) return { error: null }
+  const { data, error } = await supabase.from('articles').delete().eq('id', id).select('id')
+  if (error) return { error: apiError(error) }
+  return { error: data?.length ? null : 'You do not have permission to delete this article.' }
 }

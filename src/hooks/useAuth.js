@@ -35,7 +35,10 @@ export const useAuth = () => {
       if (active) setLoading(false)
     }
     load()
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((event, nextSession) => {
+      // Password changes and token refreshes don't change the profile; reloading it here
+      // could overwrite fresher data (e.g. a just-cleared must_change_password flag).
+      if (event === 'USER_UPDATED' || event === 'TOKEN_REFRESHED') return
       // Deferred so the Supabase query doesn't run inside the auth callback.
       setTimeout(async () => {
         const user = await withProfile(nextSession?.user)
