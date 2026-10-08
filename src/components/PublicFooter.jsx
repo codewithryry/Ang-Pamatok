@@ -20,7 +20,7 @@ export const PublicFooter = () => (
     <div className="footer-wordmark" aria-hidden="true">PAMATOK</div>
     <div className="container footer-bottom">
       <span>© 2026 Ang Pamatok</span>
-      <span className="footer-bottom__right"><Link to="/declaration">Pahayag</Link><span className="footer-bottom__sep" aria-hidden="true" /><span>Nilikha ni <a className="footer-credit" href="https://bit.ly/4cqo0aA" target="_blank" rel="noopener noreferrer">bit.ly/4cqo0aA</a></span></span>
+      <span className="footer-bottom__right"><Link to="/declaration">Pahayag</Link><span className="footer-bottom__sep" aria-hidden="true" /><span>Nilikha ni <a className="footer-credit" href="https://bit.ly/4dXjotg" target="_blank" rel="noopener noreferrer">bit.ly/4dXjotg</a></span></span>
     </div>
     <BackToTop />
   </footer>
