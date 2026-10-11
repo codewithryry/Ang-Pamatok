@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-route
 import { DashboardLayout } from './components/DashboardLayout'
 import { DialogProvider } from './components/DialogProvider'
 import { ProtectedRoute } from './components/ProtectedRoute'
+import { FloatingAd } from './components/FloatingAd'
 import { PublicFooter } from './components/PublicFooter'
 import { PublicHeader } from './components/PublicHeader'
 import { AboutPage } from './pages/AboutPage'
@@ -24,7 +25,7 @@ import { SearchPage } from './pages/SearchPage'
 import { SettingsPage } from './pages/SettingsPage'
 import { UsersPage } from './pages/UsersPage'
 
-const PublicShell = ({ children }) => <><PublicHeader />{children}<PublicFooter /></>
+const PublicShell = ({ children }) => { const { pathname } = useLocation(); return <><PublicHeader />{children}<PublicFooter /><FloatingAd key={pathname} /></> }
 const DashboardShell = ({ children }) => <DashboardLayout>{children}</DashboardLayout>
 
 const pageTitles = {

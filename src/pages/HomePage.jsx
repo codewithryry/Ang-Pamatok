@@ -1,7 +1,9 @@
 import { ArrowRight, CalendarDays } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArticleGrid } from '../components/ArticleGrid'
+import { AdSlot } from '../components/AdSlot'
+import { adConfig } from '../config/ads'
 import { LoadingState } from '../components/LoadingState'
 import { getFeaturedArticle, getPublishedArticles } from '../services/articles'
 import { formatDate, publicCategoryName } from '../lib/format'
@@ -19,7 +21,8 @@ export const HomePage = () => {
   const side = articles.filter((article) => article.id !== lead?.id).slice(0, 4)
   return (
     <main>
-      {loading ? <section className="hero-section container"><LoadingState count={1} /></section> : lead ? <section className="home-hero">
+      <AdSlot placement="home-top" className="container" />
+      {loading ? <section className="home-hero" aria-label="Naglo-load ng mga akda"><div className="container home-hero__inner home-hero__skeleton"><div className="home-hero__lead"><div className="skeleton skeleton--line short" /><div className="skeleton skeleton--line" /><div className="skeleton skeleton--line medium" /><div className="skeleton skeleton--line" /></div><aside className="home-hero__list"><LoadingState count={4} compact /></aside></div></section> : lead ? <section className="home-hero">
         {lead.cover_image_url && <img className="home-hero__bg" src={lead.cover_image_url} alt="" />}
         <img className="home-hero__mark" src={logo} alt="" aria-hidden="true" />
         <div className="container home-hero__inner">
@@ -45,7 +48,7 @@ export const HomePage = () => {
         </div>
       </section>}
       <section className="container latest-section"><div className="section-heading"><div><span className="eyebrow">Mga pinakabago</span><h2>Mga akda mula sa kampus</h2></div><Link to="/search">Tingnan ang lahat ng akda <ArrowRight size={16} /></Link></div>{error ? <div className="notice">{error}</div> : loading ? <LoadingState count={6} /> : <ArticleGrid articles={articles} columns={3} />}</section>
-      {sections.map(([title, slug], index) => <section className={`section-block section-block--${slug}`} key={slug}><div className="container"><div className="section-heading"><div><span className="eyebrow">{index === 0 ? 'Pinakabagong labas' : 'Tuklasin'}</span><h2>{title}</h2></div><Link to={`/${slug}`}>Tingnan ang {title.toLowerCase()} <ArrowRight size={16} /></Link></div><ArticleGrid articles={articles.filter((article) => article.category?.slug === slug).slice(0, 3)} columns={3} /></div></section>)}
+      {sections.map(([title, slug], index) => <Fragment key={slug}>{index === adConfig.placements['home-feed'].afterSection && <AdSlot placement="home-feed" className="container" />}<section className={`section-block section-block--${slug}`}><div className="container"><div className="section-heading"><div><span className="eyebrow">{index === 0 ? 'Pinakabagong labas' : 'Tuklasin'}</span><h2>{title}</h2></div><Link to={`/${slug}`}>Tingnan ang {title.toLowerCase()} <ArrowRight size={16} /></Link></div><ArticleGrid articles={articles.filter((article) => article.category?.slug === slug).slice(0, 3)} columns={3} /></div></section></Fragment>)}
       <section className="editorial-note container"><span className="eyebrow">Pamantayan ng ANG PAMATOK</span><h2>Isinusulat ng mga mag-aaral, para sa mga mag-aaral.</h2><p>Nakasalig ang aming pahayagan sa masusing pag-uulat, malalim na pananaw, at pamayanang handang makinig.</p><Link to="/about">Kilalanin kami <ArrowRight size={17} /></Link></section>
     </main>
   )
