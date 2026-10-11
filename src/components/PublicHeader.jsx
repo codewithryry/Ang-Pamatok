@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 import '../public-nav.css'
 import { Brand } from './Brand'
 import { SearchOverlay } from './SearchOverlay'
+import { SubscriptionModal } from './SubscriptionModal'
 import { ThemeToggle } from './ThemeToggle'
 
 const navItems = [['Tahanan', '/'], ['Balita', '/balita'], ['Agham at Teknolohiya', '/ag-tek'], ['Pananaw', '/opinyon'], ['Paninindigan', '/editoryal'], ['Lathalain', '/lathalain'], ['Panitikan', '/panitikan'], ['Kultura', '/kultura'], ['Pagsisiyasat', '/investigative'], ['Tungkol sa Amin', '/about']]
@@ -12,10 +13,10 @@ export const PublicHeader = () => {
   const [open, setOpen] = useState(false)
   const [accountOpen, setAccountOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [subscribeNoticeOpen, setSubscribeNoticeOpen] = useState(false)
+  const [subscriptionOpen, setSubscriptionOpen] = useState(false)
   const accountMenuRef = useRef(null)
-  const subscribeTimerRef = useRef(null)
   const closeSearch = useCallback(() => setSearchOpen(false), [])
+  const closeSubscription = useCallback(() => setSubscriptionOpen(false), [])
   useEffect(() => {
     if (!open) return
     document.body.style.overflow = 'hidden'
@@ -38,13 +39,7 @@ export const PublicHeader = () => {
       document.removeEventListener('keydown', closeOnEscape)
     }
   }, [accountOpen])
-  useEffect(() => () => window.clearTimeout(subscribeTimerRef.current), [])
   const openSearch = () => { setOpen(false); setSearchOpen(true) }
-  const showSubscribeNotice = () => {
-    setSubscribeNoticeOpen(true)
-    window.clearTimeout(subscribeTimerRef.current)
-    subscribeTimerRef.current = window.setTimeout(() => setSubscribeNoticeOpen(false), 3000)
-  }
   return (
     <header className="site-header">
       <div className="masthead container">
@@ -52,8 +47,7 @@ export const PublicHeader = () => {
         <button type="button" className="header-search" onClick={openSearch} aria-label="Search ANG PAMATOK"><Search size={17} /><span className="header-search__text">Search ANG PAMATOK...</span></button>
         <div className="header-actions">
           <div className="subscribe-cta">
-            <button type="button" className="subscribe-button" onClick={showSubscribeNotice} aria-expanded={subscribeNoticeOpen}><span>SUBSCRIBE</span><ArrowRight size={16} /></button>
-            {subscribeNoticeOpen && <div className="subscribe-notice" role="status">Subscriptions are still under development. Check back soon!</div>}
+            <button type="button" className="subscribe-button" onClick={() => setSubscriptionOpen(true)} aria-haspopup="dialog"><span>SUBSCRIBE</span><ArrowRight size={16} /></button>
           </div>
           <div className="account-menu" ref={accountMenuRef}>
             <button type="button" className="account-menu__trigger" onClick={() => setAccountOpen((value) => !value)} aria-label="Account options" aria-expanded={accountOpen} aria-haspopup="true" title="Account options"><UserRound size={19} /></button>
@@ -79,6 +73,7 @@ export const PublicHeader = () => {
       </div>
       <div className={`menu-backdrop ${open ? 'is-visible' : ''}`} onClick={() => setOpen(false)} aria-hidden="true" />
       <SearchOverlay open={searchOpen} onClose={closeSearch} />
+      <SubscriptionModal open={subscriptionOpen} onClose={closeSubscription} />
     </header>
   )
 }
