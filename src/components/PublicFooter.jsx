@@ -4,7 +4,7 @@ import '../public-nav.css'
 import { BackToTop } from './BackToTop'
 import { Brand } from './Brand'
 
-const sections = [['Balita', '/balita'], ['Agham at Teknolohiya', '/ag-tek'], ['Pananaw', '/opinyon'], ['Paninindigan', '/editoryal'], ['Lathalain', '/lathalain'], ['Panitikan', '/panitikan'], ['Kultura', '/kultura'], ['Pagsisiyasat', '/investigative']]
+const sections = [['Balita', '/balita'], ['Ag-Tek', '/ag-tek'], ['Opinyon', '/opinyon'], ['Editoryal', '/editoryal'], ['Lathalain', '/lathalain'], ['Panitikan', '/panitikan'], ['Kultura', '/kultura'], ['Investigative', '/investigative']]
 
 export const PublicFooter = () => (
   <footer className="site-footer">

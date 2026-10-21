@@ -1,12 +1,12 @@
 export const demoCategories = [
-  { id: 'balita', name: 'Balita', slug: 'balita', description: 'Mga kaganapan sa kampus, balitang pangkomunidad, at mga kuwentong humuhubog sa buhay-estudyante.', display_order: 1, is_active: true },
-  { id: 'ag-tek', name: 'Ag-Tek', slug: 'ag-tek', description: 'Agham, teknolohiya, at inobasyon sa loob at labas ng kampus.', display_order: 2, is_active: true },
-  { id: 'opinyon', name: 'Opinyon', slug: 'opinyon', description: 'Malinaw na pananaw sa edukasyon, kultura, at buhay-kampus.', display_order: 3, is_active: true },
-  { id: 'editoryal', name: 'Editoryal', slug: 'editoryal', description: 'Ang opisyal na paninindigan ng patnugutan sa mahahalagang isyu.', display_order: 4, is_active: true },
-  { id: 'lathalain', name: 'Lathalain', slug: 'lathalain', description: 'Malalalim na profile at kuwento mula sa komunidad ng mga estudyante.', display_order: 5, is_active: true },
-  { id: 'panitikan', name: 'Panitikan', slug: 'panitikan', description: 'Tula, prosa, at pagninilay mula sa mga manunulat ng ating komunidad.', display_order: 6, is_active: true },
-  { id: 'kultura', name: 'Kultura', slug: 'kultura', description: 'Sining, tradisyon, at pamumuhay na bumubuo sa ating pagkakakilanlan.', display_order: 7, is_active: true },
-  { id: 'investigative', name: 'Investigative', slug: 'investigative', description: 'Masusing pag-uulat na naghuhukay sa likod ng mga isyu.', display_order: 8, is_active: true },
+  { id: 'balita', name: 'Balita', slug: 'balita', description: 'Mga napapanahong pangyayari at usaping panlipunan na naglalantad sa kalagayan ng bayan.', display_order: 1, is_active: true },
+  { id: 'ag-tek', name: 'Ag-Tek', slug: 'ag-tek', description: 'Mga usaping pang-agham at teknolohiya na sinusuri sa konteksto ng lipunan at kapangyarihan.', display_order: 2, is_active: true },
+  { id: 'opinyon', name: 'Opinyon', slug: 'opinyon', description: 'Mga kritikal na pananaw at paninindigang humahamon sa umiiral na sistema.', display_order: 3, is_active: true },
+  { id: 'editoryal', name: 'Editoryal', slug: 'editoryal', description: 'Tinig ng publikasyong naninindigan para sa katotohanan, katarungan, at pagbabago.', display_order: 4, is_active: true },
+  { id: 'lathalain', name: 'Lathalain', slug: 'lathalain', description: 'Mga kuwento ng buhay, pakikibaka, at pag-asa ng mamamayang patuloy na lumalaban.', display_order: 5, is_active: true },
+  { id: 'panitikan', name: 'Panitikan', slug: 'panitikan', description: 'Mga akdang nagsisiwalat ng realidad, pumupukaw ng kamalayan, at nagbibigay-tinig sa sambayanan.', display_order: 6, is_active: true },
+  { id: 'kultura', name: 'Kultura', slug: 'kultura', description: 'Mga tradisyon, identidad, at pagpapahalagang humuhubog sa kamalayan at pagkakaisa ng mamamayan.', display_order: 7, is_active: true },
+  { id: 'investigative', name: 'Investigative', slug: 'investigative', description: 'Masusing pagsisiyasat sa mga isyung panlipunan upang ilantad ang katotohanan at panagutin ang mga nasa kapangyarihan.', display_order: 8, is_active: true },
 ]
 
 const now = new Date('2026-10-07T12:00:00Z')

@@ -7,7 +7,7 @@ import { SearchOverlay } from './SearchOverlay'
 import { SubscriptionModal } from './SubscriptionModal'
 import { ThemeToggle } from './ThemeToggle'
 
-const navItems = [['Tahanan', '/'], ['Balita', '/balita'], ['Agham at Teknolohiya', '/ag-tek'], ['Pananaw', '/opinyon'], ['Paninindigan', '/editoryal'], ['Lathalain', '/lathalain'], ['Panitikan', '/panitikan'], ['Kultura', '/kultura'], ['Pagsisiyasat', '/investigative'], ['Tungkol sa Amin', '/about']]
+const navItems = [['Tahanan', '/'], ['Balita', '/balita'], ['Ag-Tek', '/ag-tek'], ['Opinyon', '/opinyon'], ['Editoryal', '/editoryal'], ['Lathalain', '/lathalain'], ['Panitikan', '/panitikan'], ['Kultura', '/kultura'], ['Investigative', '/investigative'], ['Tungkol sa Amin', '/about']]
 
 export const PublicHeader = () => {
   const [open, setOpen] = useState(false)

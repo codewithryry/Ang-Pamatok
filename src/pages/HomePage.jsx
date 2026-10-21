@@ -9,7 +9,7 @@ import { getFeaturedArticle, getPublishedArticles } from '../services/articles'
 import { formatDate, publicCategoryName } from '../lib/format'
 import logo from '../assets/Pamatok.png'
 
-const sections = [['Balita', 'balita'], ['Agham at Teknolohiya', 'ag-tek'], ['Pananaw', 'opinyon'], ['Paninindigan', 'editoryal'], ['Lathalain', 'lathalain'], ['Panitikan', 'panitikan'], ['Kultura', 'kultura'], ['Pagsisiyasat', 'investigative']]
+const sections = [['Balita', 'balita'], ['Ag-Tek', 'ag-tek'], ['Opinyon', 'opinyon'], ['Editoryal', 'editoryal'], ['Lathalain', 'lathalain'], ['Panitikan', 'panitikan'], ['Kultura', 'kultura'], ['Investigative', 'investigative']]
 
 export const HomePage = () => {
   const [featured, setFeatured] = useState(null)
@@ -39,17 +39,17 @@ export const HomePage = () => {
         <img className="home-hero__mark" src={logo} alt="" aria-hidden="true" />
         <div className="container home-hero__inner">
           <div className="home-hero__lead">
-            <span className="home-hero__tag">Ang Pamatok · Malapit nang ilathala</span>
+            <span className="home-hero__tag">Ang Pamatok · ALTERMIDYA</span>
             <h1>Tinataguyod ang malayang pamamahayag.</h1>
-            <p>Dito ilalathala ang mga balita, pananaw, at akda ng mga mag-aaral. Abangan ang aming mga unang akda.</p>
+            <p>Dito inilalantad ang mga katotohanang pilit ikinukubli at ang mga tinig na pilit pinatatahimik.</p>
             <Link className="button home-hero__cta" to="/about">Kilalanin kami <ArrowRight size={17} /></Link>
           </div>
           <aside className="home-hero__list" aria-label="Mga paksa"><span className="home-hero__list-title">Mga Paksa</span>{sections.slice(0, 4).map(([title, slug]) => <Link className="home-hero__item" to={`/${slug}`} key={slug}><span className="home-hero__thumb">{title[0]}</span><span className="home-hero__item-text"><small>Paksa</small><strong>{title}</strong></span></Link>)}</aside>
         </div>
       </section>}
-      <section className="container latest-section"><div className="section-heading"><div><span className="eyebrow">Mga pinakabago</span><h2>Mga akda mula sa kampus</h2></div><Link to="/search">Tingnan ang lahat ng akda <ArrowRight size={16} /></Link></div>{error ? <div className="notice">{error}</div> : loading ? <LoadingState count={6} /> : <ArticleGrid articles={articles} columns={3} />}</section>
+      <section className="container latest-section"><div className="section-heading"><div><span className="eyebrow">Mga pinakabago</span><h2>Salamin ng katotohanan, ugat ng kamalayan</h2></div><Link to="/search">Tingnan ang lahat ng akda <ArrowRight size={16} /></Link></div>{error ? <div className="notice">{error}</div> : loading ? <LoadingState count={6} /> : <ArticleGrid articles={articles} columns={3} />}</section>
       {sections.map(([title, slug], index) => <Fragment key={slug}>{index === adConfig.placements['home-feed'].afterSection && <AdSlot placement="home-feed" className="container" />}<section className={`section-block section-block--${slug}`}><div className="container"><div className="section-heading"><div><span className="eyebrow">{index === 0 ? 'Pinakabagong labas' : 'Tuklasin'}</span><h2>{title}</h2></div><Link to={`/${slug}`}>Tingnan ang {title.toLowerCase()} <ArrowRight size={16} /></Link></div><ArticleGrid articles={articles.filter((article) => article.category?.slug === slug).slice(0, 3)} columns={3} /></div></section></Fragment>)}
-      <section className="editorial-note container"><span className="eyebrow">Pamantayan ng ANG PAMATOK</span><h2>Isinusulat ng mga mag-aaral, para sa mga mag-aaral.</h2><p>Nakasalig ang aming pahayagan sa masusing pag-uulat, malalim na pananaw, at pamayanang handang makinig.</p><Link to="/about">Kilalanin kami <ArrowRight size={17} /></Link></section>
+      <section className="editorial-note container"><span className="eyebrow">Pamantayan ng ANG PAMATOK</span><h2>Isinisiwalat ang katotohanan, para sa sambayanang naghahangad ng pagbabago.</h2><p>Nakasalig ang aming pamamahayag sa katotohanan, katarungan, at kalayaan ng sambayanan.</p><Link to="/about">Kilalanin kami <ArrowRight size={17} /></Link></section>
     </main>
   )
 }

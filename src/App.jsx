@@ -46,7 +46,7 @@ const pageTitles = {
   '/dashboard/settings': 'Settings',
   '/dashboard/profile': 'My Profile',
 }
-const categoryTitles = { 'balita': 'Balita', 'ag-tek': 'Agham at Teknolohiya', 'opinyon': 'Pananaw', 'editoryal': 'Paninindigan', 'lathalain': 'Lathalain', 'panitikan': 'Panitikan', 'kultura': 'Kultura', 'investigative': 'Pagsisiyasat' }
+const categoryTitles = { 'balita': 'Balita', 'ag-tek': 'Ag-Tek', 'opinyon': 'Opinyon', 'editoryal': 'Editoryal', 'lathalain': 'Lathalain', 'panitikan': 'Panitikan', 'kultura': 'Kultura', 'investigative': 'Investigative' }
 
 // Sets the browser tab title per route and resets scroll; ArticlePage refines it with the story title once loaded.
 const RouteTitle = () => {

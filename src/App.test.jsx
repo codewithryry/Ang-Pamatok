@@ -14,7 +14,7 @@ describe('ANG PAMATOK application', () => {
     render(<App />)
 
     expect(screen.getAllByRole('link', { name: 'ANG PAMATOK, tahanan' })).toHaveLength(2)
-    expect(screen.getByRole('heading', { name: /Mga akda mula sa kampus/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Salamin ng katotohanan, ugat ng kamalayan/i })).toBeInTheDocument()
   })
 
   it('opens public category routes with the site header and footer', () => {

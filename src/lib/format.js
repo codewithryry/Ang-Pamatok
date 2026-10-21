@@ -7,7 +7,6 @@ export const formatDate = (value) => {
 
 export const publicCategoryName = (category) => {
   if (!category) return 'Akda'
-  if (category.slug === 'investigative' || category.name === 'Investigative') return 'Pagsisiyasat'
   return category.name || 'Akda'
 }
 
