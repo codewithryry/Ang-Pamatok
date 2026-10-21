@@ -29,10 +29,16 @@ export const useAuth = () => {
       return
     }
     const load = async () => {
-      const { data } = await getCurrentUser()
-      const user = await withProfile(data?.user)
-      if (active) setSession(user)
-      if (active) setLoading(false)
+      try {
+        const { data } = await getCurrentUser()
+        const user = await withProfile(data?.user)
+        if (active) setSession(user)
+      } catch {
+        // A failed auth check falls through to the login redirect instead of an endless loader.
+        if (active) setSession(null)
+      } finally {
+        if (active) setLoading(false)
+      }
     }
     load()
     const { data: listener } = supabase.auth.onAuthStateChange((event, nextSession) => {

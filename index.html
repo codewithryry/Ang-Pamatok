@@ -11,9 +11,21 @@
       document.documentElement.dataset.theme = 'dark'
       try { document.documentElement.dataset.theme = localStorage.getItem('pamatok-theme') || 'dark' } catch (e) {}
     </script>
+    <style>
+      /* Boot loader shown until React replaces #root; mirrors .page-loader in styles.css. */
+      .boot-loader{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:#f7f2e7;animation:boot-in .35s ease .3s both}
+      :root[data-theme="dark"] .boot-loader{background:#14120e}
+      .boot-loader span{position:relative;display:grid;place-items:center;width:clamp(88px,22vw,120px);aspect-ratio:1}
+      .boot-loader span::before{content:"";position:absolute;inset:0;border:3px solid #d8cfbd;border-top-color:#9d1f2c;border-radius:50%;animation:boot-spin 2.4s linear infinite}
+      :root[data-theme="dark"] .boot-loader span::before{border-color:#36322b;border-top-color:#c9364b}
+      .boot-loader img{width:66%;height:66%;object-fit:contain}
+      @keyframes boot-in{from{opacity:0;transform:scale(.96)}}
+      @keyframes boot-spin{to{transform:rotate(360deg)}}
+      @media(prefers-reduced-motion:reduce){.boot-loader,.boot-loader span::before{animation-duration:.01ms;animation-iteration-count:1}}
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div class="boot-loader" role="status" aria-label="Naglo-load ang pahina"><span><img src="/src/assets/Pamatok.png" alt="" /></span></div></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
